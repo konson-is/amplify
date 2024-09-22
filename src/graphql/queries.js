@@ -6,10 +6,12 @@ export const getTodo = /* GraphQL */ `
     getTodo(id: $id) {
       title
       description
+      image
       id
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -23,12 +25,15 @@ export const listTodos = /* GraphQL */ `
       items {
         title
         description
+        image
         id
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;

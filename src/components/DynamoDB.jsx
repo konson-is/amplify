@@ -2,6 +2,8 @@ import { generateClient } from "@aws-amplify/api";
 import { useEffect, useState } from "react";
 import { createTodo } from "../graphql/mutations";
 import { listTodos } from "../graphql/queries";
+import { uploadData } from "aws-amplify/storage";
+import { S3 } from "./S3";
 
 const client = generateClient();
 
@@ -9,6 +11,7 @@ export const DynamoDb = () => {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchTodos();
@@ -35,13 +38,27 @@ export const DynamoDb = () => {
     setDescription(event.target.value);
   };
 
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
+      const stored = await uploadData({
+        key: `public/${image.name}`,
+        data: image,
+        options: {
+          contentType: image.type,
+        },
+      }).result;
+      console.log("stored:", stored);
+
       const todoDetails = {
         title,
         description,
+        image: stored.key,
       };
 
       const newTodo = await client.graphql({
@@ -74,14 +91,20 @@ export const DynamoDb = () => {
           />
         </label>
         <br />
+        <label>
+          Image:
+          <input type="file" onChange={handleImageChange} />
+        </label>
         <button type="submit">Create Post</button>
       </form>
       <ol>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <p>
-              title={todo.title},description={todo.description}
-            </p>
+            <S3
+              title={todo.title}
+              description={todo.description}
+              image={todo.image}
+            />
           </li>
         ))}
       </ol>

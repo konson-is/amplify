@@ -9,10 +9,12 @@ export const createTodo = /* GraphQL */ `
     createTodo(input: $input, condition: $condition) {
       title
       description
+      image
       id
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -24,10 +26,12 @@ export const updateTodo = /* GraphQL */ `
     updateTodo(input: $input, condition: $condition) {
       title
       description
+      image
       id
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -39,10 +43,12 @@ export const deleteTodo = /* GraphQL */ `
     deleteTodo(input: $input, condition: $condition) {
       title
       description
+      image
       id
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;

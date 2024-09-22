@@ -17,6 +17,20 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolName": "string"
     }
   },
+  "custom": {
+    "sns": {
+      "snsTopicArn": "string"
+    }
+  },
+  "function": {
+    "sendMailFunction": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    }
+  },
   "storage": {
     "s3": {
       "BucketName": "string",

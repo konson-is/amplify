@@ -5,3 +5,7 @@ type Todo
   description: String
   image: String
 }
+
+type Query {
+  lambdainvoke: String @function(name: "sendMailFunction-${env}")
+}

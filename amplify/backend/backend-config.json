@@ -60,6 +60,46 @@
       "service": "Cognito"
     }
   },
+  "custom": {
+    "sns": {
+      "providerPlugin": "awscloudformation",
+      "service": "customCDK"
+    }
+  },
+  "function": {
+    "sendMailFunction": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "snsTopicArn"
+          ],
+          "category": "custom",
+          "resourceName": "sns"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_sendMailFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "sendMailFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_sendMailFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "sendMailFunction"
+        }
+      ]
+    }
+  },
   "storage": {
     "s3": {
       "dependsOn": [],

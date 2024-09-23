@@ -86,7 +86,10 @@
         },
         "Runtime": "nodejs18.x",
         "Layers": [],
-        "Timeout": 25
+        "Timeout": 25,
+        "TracingConfig": {
+          "Mode": "Active"
+        }
       }
     },
     "LambdaExecutionRole": {
@@ -186,6 +189,16 @@
                 {
                   "Ref": "customsnssnsTopicArn"
                 }
+              ],
+              "Effect": "Allow"
+            },
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords"
+              ],
+              "Resource": [
+                "*"
               ],
               "Effect": "Allow"
             }

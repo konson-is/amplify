@@ -1,5 +1,8 @@
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
-const sns = new SNSClient({ region: "ap-northeast-1" });
+const AWSXRay = require("aws-xray-sdk");
+const sns = AWSXRay.captureAWSv3Client(
+  new SNSClient({ region: "ap-northeast-1" })
+);
 
 exports.handler = async (event) => {
   const params = {

@@ -2,5 +2,9 @@
   {
     "Action": ["sns:Publish"],
     "Resource": [{"Ref":"customsnssnsTopicArn"}]
+  },
+  {
+    "Action": ["xray:PutTraceSegments","xray:PutTelemetryRecords"],
+    "Resource": ["*"]
   }
 ]

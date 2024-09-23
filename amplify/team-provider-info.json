@@ -27,7 +27,7 @@
       "function": {
         "sendMailFunction": {
           "deploymentBucketName": "amplify-amplifyapp-dev-205340-deployment",
-          "s3Key": "amplify-builds/sendMailFunction-386d426a6d64334f6230-build.zip"
+          "s3Key": "amplify-builds/sendMailFunction-36564641686d4e703943-build.zip"
         }
       }
     }
